@@ -16,6 +16,7 @@ services:
     image: mtg1555/speedtest-ursa-minor
     container_name: speedtest-ursa-minor
     environment:
+      - "SPEEDTEST_SCHEDULE=0 * * * *"
       - DOWNLOAD_KEY=<kuma-push-key-1>
       - UPLOAD_KEY=<kuma-push-key-2>
       - LATENCY_KEY=<kuma-push-key-3>
@@ -27,9 +28,10 @@ services:
 A docker image is available [here](https://hub.docker.com/r/mtg1555/speedtest-ursa-minor), you can create a new conatiner by running:
 
 ```bash
-docker create \
+docker run \
       --name=ursa \
       --restart unless-stopped \
+      -e "SPEEDTEST_SCHEDULE=0 * * * *" \
       -e DOWNLOAD_KEY=<kuma-push-key-1> \
       -e UPLOAD_KEY=<kuma-push-key-2> \
       -e LATENCY_KEY=<kuma-push-key-3> \
@@ -45,7 +47,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e DOWNLOAD_PASS=0` | Minimum download Mbps returned by the speedtest for your network to be considered "up" |
 | `-e UPLOAD_PASS=0` | Minimum upload Mbps returned by the speedtest for your network to be considered "up" |
 | `-e LATENCY_PASS=10000` | Maximum latency ms returned by the speedtest for your network to be considered "up" |
-| `-e SPEEDTEST_SCHEDULE="0 * * * *"` | Cron expression for how often to run speedtests |
+| `-e "SPEEDTEST_SCHEDULE=0 * * * *"` | Cron expression for how often to run speedtests |
 | `-e KUMA_ADDR=localhost` | the ip address that Uptime Kuma listens on |
 | `-e KUMA_PORT=3001` | The port that Uptime Kuma listens on |
 | `-e DOWNLOAD_KEY=""` | (REQUIRED) The key in the push url for the push monitor tracking download uptime |
