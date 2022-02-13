@@ -16,9 +16,8 @@ RUN apk add curl
 COPY app/speedcheck.sh /speedcheck.sh
 COPY app/start.sh /start.sh
 
-RUN echo "$SPEEDTEST_SCHEDULE sh /speedcheck.sh" \ 
-            "" > /etc/crontabs/root
 RUN chmod 755  /speedcheck.sh /start.sh
 RUN chmod 0644 /etc/crontabs/root
 
-CMD ["sh", "start.sh"]
+ENTRYPOINT ["/start.sh"]
+CMD ["/usr/sbin/crond", "-f"]
