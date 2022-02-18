@@ -9,9 +9,12 @@ ENV KUMA_PORT=3001
 ENV DOWNLOAD_KEY=""
 ENV UPLOAD_KEY=""
 ENV LATENCY_KEY=""
+ENV SPEEDTEST_ADDR=""
+ENV SPEEDTEST_PORT=""
 
 RUN apk add speedtest-cli
 RUN apk add curl
+RUN apk add jq
 
 COPY app/speedcheck.sh /speedcheck.sh
 COPY app/start.sh /start.sh
