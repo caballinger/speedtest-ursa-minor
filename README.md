@@ -3,7 +3,7 @@
 
 Small service app for pushing speedtest results to [Uptime Kuma ](https://github.com/louislam/uptime-kuma).
 
-This program allows you to schedule speedtests, define upload/download/ping thresholds that must be met for your network to be considered "up", and report the results to push monitors in [Uptime Kuma ](https://github.com/louislam/uptime-kuma)
+This program allows you to schedule speedtests, define upload/download/ping thresholds that must be met for your network to be considered "up", and report the results to push monitors in [Uptime Kuma ](https://github.com/louislam/uptime-kuma). It also allows you to forward speedtest results from the [Speedtest-Tracker](https://github.com/henrywhitaker3/Speedtest-Tracker) API to Update Kuma as well.
 
 ## Usage
 
@@ -50,6 +50,8 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e "SPEEDTEST_SCHEDULE=0 * * * *"` | Cron expression for how often to run speedtests |
 | `-e KUMA_ADDR=localhost` | the ip address that Uptime Kuma listens on |
 | `-e KUMA_PORT=3001` | The port that Uptime Kuma listens on |
+| `-e SPEEDTEST_ADDR=` | (OPTIONAL) the ip address of the Speedtest-Tracker API to forward results from |
+| `-e SPEEDTEST_ADDR=` | (OPTIONAL) the port of the Speedtest-Tracker API to forward results from |
 | `-e DOWNLOAD_KEY=""` | (REQUIRED) The key in the push url for the push monitor tracking download uptime |
 | `-e UPLOAD_KEY=""` | (REQUIRED) The key in the push url for the push monitor tracking upload uptime |
 | `-e LATENCY_KEY=""` | (REQUIRED) The key in the push url for the push monitor tracking latency uptime |
