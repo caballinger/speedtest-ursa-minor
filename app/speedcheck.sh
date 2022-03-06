@@ -29,14 +29,14 @@ uploadAddr="$KUMA_ADDR:$KUMA_PORT/api/push/$UPLOAD_KEY?msg=$timestring&ping"
 latencyAddr="$KUMA_ADDR:$KUMA_PORT/api/push/$LATENCY_KEY?msg=$timestring&ping"
 lossAddr="$KUMA_ADDR:$KUMA_PORT/api/push/$LOSS_KEY?msg=$timestring&ping"
 
-if [[ $download > $DOWNLOAD_PASS ]]; then
+if [[ 1 -eq "$(echo "${download} > ${DOWNLOAD_PASS}" | bc)" ]]; then
    curl -k -s -o /dev/null "$downloadAddr=$download"
 fi
 
-if [[ $upload > $UPLOAD_PASS ]]; then
+if [[ 1 -eq "$(echo "${upload} > ${UPLOAD_PASS}" | bc)" ]]; then
    curl -k -s -o /dev/null "$uploadAddr=$upload"
 fi
 
-if [[ $LATENCY_PASS > $latency ]]; then
+if [[ 1 -eq "$(echo "${LATENCY_PASS} > ${latency}" | bc)" ]]; then
    curl -k -s -o /dev/null "$latencyAddr=$latency"
 fi
